@@ -30,7 +30,7 @@ public class SaveCategory {
         // Сохраняем категорию
         serviceJpa.saveCategoryName(categoryName);
 
-        // Получаем id последней записи в таблице. Это только что сохранённой таблицы ↑
+        // Получаем id последней записи в таблице. Это только что сохранённая запись в таблице ↑
         Long idCategory = serviceJpa.findTheLastOne();
 
         // Получаем только что созданную категорию по id ↑
