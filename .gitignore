@@ -1,0 +1,12 @@
+/out/
+/target/
+
+.idea/*
+
+*.class
+
+*.war
+*.jar
+*.ear
+# Project exclude paths
+/classes/
