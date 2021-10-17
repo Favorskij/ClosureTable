@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
+// https://dbfiddle.uk/
+
 @Transactional(readOnly = true)
 public interface CategoryJpa extends JpaRepository<CategoryName, Long> {
 
@@ -144,6 +146,40 @@ public interface CategoryJpa extends JpaRepository<CategoryName, Long> {
 
     */
 
+
+    // 8
+    // Получаем все узлы, у которых нет родителей. Если в таблице category_name будет какое-то поле которое
+    // не будет являться узлом, то это поле тоже будет получено.
+    // SELECT * FROM category_name c WHERE NOT EXISTS (SELECT * FROM tree_path t WHERE t.parent != c.id AND t.children = c.id);
+
+    /*
+
+    +----+-------------+-------+
+    | id | name        | level |
+    +----+-------------+-------+
+    |  1 | Электроника |     0 |
+    | 16 | Для дома    |     0 |
+    | 34 | test        |     0 |
+    +----+-------------+-------+
+
+    */
+
+
+
+    // 9
+    // Тоже-самое, только исключает поля из таблицы, которые не являются узлами. Таблица category_name
+    // SELECT * FROM category_name c WHERE NOT EXISTS (SELECT * FROM tree_path t WHERE t.parent != c.id AND t.children = c.id) AND EXISTS (SELECT * FROM tree_path t WHERE t.parent = c.id AND t.children = c.id);
+
+    /*
+
+    +----+-------------+-------+
+    | id | name        | level |
+    +----+-------------+-------+
+    |  1 | Электроника |     0 |
+    | 16 | Для дома    |     0 |
+    +----+-------------+-------+
+
+    */
 
 
 
