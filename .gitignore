@@ -5,6 +5,8 @@
 
 *.class
 
+ClosureTable.iml
+
 *.war
 *.jar
 *.ear
